@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 
 @Controller
-@RequestMapping()
 public class UserController {
     private final UserService userService;
     @Autowired
@@ -32,8 +31,13 @@ public class UserController {
         return "redirect:/";
     }
     @GetMapping("/deleteUser")
-    public String removeUser(@RequestParam(value = "id") int id){
-        userService.deleteUser(id);
+    public String removeUser(@RequestParam("id") int id,Model model){
+        model.addAttribute("user",userService.getUser(id));
+        return "/deleteUser";
+    }
+    @PostMapping("/remove")
+    public String deleteUser(@ModelAttribute("user")User user){
+        userService.deleteUser(user.getId());
         return "redirect:/";
     }
     @GetMapping("/updateUser")

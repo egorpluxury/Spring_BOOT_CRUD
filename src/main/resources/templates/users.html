@@ -5,13 +5,18 @@
     <title>Users</title>
 </head>
 <body>
-  <table border="1" width="500">
+<div>
+  <br>
+  <table border="1" width="500" >
     <thead>
+    <b>Users</b>
     <th>id</th>
     <th>Name</th>
     <th>Last name</th>
     <th>email</th>
     <th>Age</th>
+    <th>Update</th>
+    <th>Delete</th>
     </thead>
     <tbody>
     <tr th:each="user:${users}">
@@ -22,11 +27,15 @@
       <td th:text="${user.getAge()}"></td>
       <td>
         <a th:href="'/updateUser?id='+${user.id}">Update</a>
+      </td>
+      <td>
         <a th:href="'/deleteUser?id='+${user.id}">Delete</a>
+        </form>
       </td>
     </tr>
     </tbody>
   </table>
+</div>
 <br>
 <input type="button" value="Add User" onclick="window.location.href='new'">
 </body>
